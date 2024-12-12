@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ddd;
+            font-family: sans-serif;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article></article>
+    </main>
+    <script>
+        const id = new URLSearchParams(window.location.search).get("id");
+        const productUrl = `https://dummyjson.com/products/${id}`;
+        const article = document.querySelector("article");
+
+        function getData() {
+            fetch(productUrl).then(res => res.json().then(show))
+        }
+
+        function show(data) {
+            console.log(data);
+            article.innerHTML += `
+                <h1>${data.title}</h1>
+                <img src="${data.thumbnail}">
+                <p>${data.description}</p>
+            `;
+        }
+
+        getData();
+    </script>
+</body>
+
+</html>

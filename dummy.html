@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+    <style>
+        body {
+            background-color: black;
+            color: #eee;
+            font-family: sans-serif;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        #categorylist {
+            list-style: none;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                margin: .2rem;
+                padding: .4rem;
+                border-radius: .4rem;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            li:hover {
+                background-color: orange;
+
+                a {
+                    color: #333;
+                }
+            }
+        }
+
+        .aktiv {
+            background-color: orange;
+
+            a {
+                color: #333;
+            }
+        }
+
+        .inaktiv {
+            background-color: #333;
+
+            a {
+                color: white;
+            }
+        }
+
+        #productlist {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1em;
+
+            img {
+                max-width: 100%;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        .product_card {
+            background-color: #222;
+            padding: 1em;
+            border-radius: .4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Products</h1>
+        <ul id="categorylist"></ul>
+        <h2>blandet</h2>
+        <section id="productlist"></section>
+    </main>
+
+    <script>
+        const cat = new URLSearchParams(window.location.search).get("cat");
+        const h2 = document.querySelector("h2");
+        const categorylist = document.querySelector("#categorylist");
+        const productlist = document.querySelector("#productlist");
+        const categoryUrl = 'https://dummyjson.com/products/category-list';
+        let productsUrl = 'https://dummyjson.com/products';
+        if (cat) {
+            h2.textContent = cat;
+            productsUrl = `https://dummyjson.com/products/category/${cat}`;
+        }
+
+        function hentData(endpoint, out) {
+            fetch(endpoint).then(res => res.json()).then(out);
+        }
+
+        function showCategories(data) {
+            data.forEach(category => {
+                categorylist.innerHTML += `<li class="${category == cat ? 'aktiv' : 'inaktiv'}"><a href="?cat=${category}">${category}</a></li>`
+            });
+        }
+
+        function showProducts(data) {
+            //console.log(data.products);
+            data.products.forEach(product => {
+                productlist.innerHTML += `
+                <a href="single.html?id=${product.id}">
+                <article class="product_card">
+                    <img src="${product.thumbnail}"> 
+                    <h3>${product.title}</h3>
+                    <p>${product.price} €</p>
+                    <p>${Math.round(product.price + (product.price * product.discountPercentage / 100))}.00 €</p>
+                 </article>
+                 </a>
+                `
+            });
+        }
+
+        hentData(categoryUrl, showCategories);
+        hentData(productsUrl, showProducts);
+    </script>
+</body>
+
+</html>
