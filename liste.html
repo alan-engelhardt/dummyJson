@@ -11,8 +11,6 @@
 <body>
     <main>
         <h1>Products</h1>
-        <ul id="categorylist"></ul>
-        <h2>blandet</h2>
         <section id="productlist"></section>
     </main>
 
@@ -20,27 +18,11 @@
         const h2 = document.querySelector("h2");
         const categorylist = document.querySelector("#categorylist");
         const productlist = document.querySelector("#productlist");
-        const categoryUrl = 'https://dummyjson.com/products/category-list';
         let productsUrl = 'https://dummyjson.com/products';
 
-        const cat = new URLSearchParams(window.location.search).get("cat");
-        if (cat) {
-            h2.textContent = cat;
-            productsUrl = `https://dummyjson.com/products/category/${cat}`;
-        }
 
-        function hentData(endpoint, out) {
-            fetch(endpoint).then(res => res.json()).then(out);
-        }
-
-        function showCategories(data) {
-            data.forEach(category => {
-                categorylist.innerHTML += `
-                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
-                    <a href="?cat=${category}">${category}</a>
-                </li>
-                `
-            });
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showProducts);
         }
 
         function showProducts(data) {
@@ -59,7 +41,6 @@
             });
         }
 
-        hentData(categoryUrl, showCategories);
         hentData(productsUrl, showProducts);
     </script>
 </body>
