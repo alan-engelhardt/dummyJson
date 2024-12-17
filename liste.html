@@ -17,12 +17,13 @@
     </main>
 
     <script>
-        const cat = new URLSearchParams(window.location.search).get("cat");
         const h2 = document.querySelector("h2");
         const categorylist = document.querySelector("#categorylist");
         const productlist = document.querySelector("#productlist");
         const categoryUrl = 'https://dummyjson.com/products/category-list';
         let productsUrl = 'https://dummyjson.com/products';
+
+        const cat = new URLSearchParams(window.location.search).get("cat");
         if (cat) {
             h2.textContent = cat;
             productsUrl = `https://dummyjson.com/products/category/${cat}`;
@@ -34,7 +35,11 @@
 
         function showCategories(data) {
             data.forEach(category => {
-                categorylist.innerHTML += `<li class="${category == cat ? 'aktiv' : 'inaktiv'}"><a href="?cat=${category}">${category}</a></li>`
+                categorylist.innerHTML += `
+                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
+                    <a href="?cat=${category}">${category}</a>
+                </li>
+                `
             });
         }
 
@@ -47,7 +52,7 @@
                     <img src="${product.thumbnail}"> 
                     <h3>${product.title}</h3>
                     <p>${product.price} €</p>
-                    <p>${Math.round(product.price + (product.price * product.discountPercentage / 100))}.00 €</p>
+                    <p>${product.discountPercentage} %</p>
                  </article>
                  </a>
                 `
