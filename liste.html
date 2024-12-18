@@ -15,7 +15,6 @@
     </main>
 
     <script>
-        const h2 = document.querySelector("h2");
         const categorylist = document.querySelector("#categorylist");
         const productlist = document.querySelector("#productlist");
         let productsUrl = 'https://dummyjson.com/products';
@@ -26,7 +25,7 @@
         }
 
         function showProducts(data) {
-            //console.log(data.products);
+            console.log(data.products);
             data.products.forEach(product => {
                 productlist.innerHTML += `
                 <a href="single.html?id=${product.id}">
@@ -34,7 +33,6 @@
                     <img src="${product.thumbnail}"> 
                     <h3>${product.title}</h3>
                     <p>${product.price} €</p>
-                    <p>${product.discountPercentage} %</p>
                  </article>
                  </a>
                 `
