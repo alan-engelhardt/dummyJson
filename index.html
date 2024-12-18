@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Frontpage</title>
+</head>
+
+<body>
+    <h1>My Shop</h1>
+    <h2>Kategorier</h2>
+    <section id="categorylist"></section>
+
+    <script>
+
+        const categorylist = document.querySelector("#categorylist");
+        const categoryUrl = 'https://dummyjson.com/products/category-list';
+
+        const cat = new URLSearchParams(window.location.search).get("cat");
+        if (cat) {
+            h2.textContent = cat;
+            productsUrl = `https://dummyjson.com/products/category/${cat}`;
+        }
+
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showCategories);
+        }
+
+        function showCategories(data) {
+            data.forEach(category => {
+                categorylist.innerHTML += `
+                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
+                    <a href="liste.html?cat=${category}">${category}</a>
+                </li>
+                `
+            });
+        }
+
+        hentData(categoryUrl, showCategories);
+    </script>
+</body>
+
+</html>
