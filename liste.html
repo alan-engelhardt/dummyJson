@@ -23,13 +23,13 @@
     <script>
         const h2 = document.querySelector("h2");
         const recipeslist = document.querySelector("#recipeslist");
-        const url = 'https://dummyjson.com/recipes';
+        let url = 'https://dummyjson.com/recipes';
 
-        const cat = new URLSearchParams(window.location.search).get("cat");
+        const tag = new URLSearchParams(window.location.search).get("tag");
 
-        if (cat) {
-            h2.textContent = cat;
-            recipesUrl = `https://dummyjson.com/recipes/category/${cat}`;
+        if (tag) {
+            h2.textContent = tag;
+            url = `https://dummyjson.com/recipes/tag/${tag}`;
         }
 
         function showRecipies(data) {

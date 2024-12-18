@@ -10,14 +10,14 @@
 
 <body>
     <main>
-        <h1>My Shop</h1>
+        <h1>My Recipes</h1>
         <h2>Kategorier</h2>
-        <ul id="categorylist"></ul>
+        <ul id="taglist"></ul>
     </main>
     <script>
 
-        const categorylist = document.querySelector("#categorylist");
-        const categoryUrl = 'https://dummyjson.com/products/category-list';
+        const taglist = document.querySelector("#taglist");
+        const tagsUrl = 'https://dummyjson.com/recipes/tags';
 
         function hentData(endpoint) {
             fetch(endpoint).then(res => res.json()).then(showCategories);
@@ -25,15 +25,15 @@
 
         function showCategories(data) {
             data.forEach(category => {
-                categorylist.innerHTML += `
+                taglist.innerHTML += `
                 <li class="inaktiv">
-                    <a href="liste.html?cat=${category}">${category}</a>
+                    <a href="liste.html?tag=${category}">${category}</a>
                 </li>
                 `
             });
         }
 
-        hentData(categoryUrl);
+        hentData(tagsUrl);
     </script>
 </body>
 
