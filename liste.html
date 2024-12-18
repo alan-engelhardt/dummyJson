@@ -4,46 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>products</title>
+    <title>Recipies</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
         <nav>
-            <ul id="catnav">
+            <ul>
                 <li class="aktiv"><a href="index.html">Forside</a></li>
             </ul>
         </nav>
-        <h1>Products</h1>
-        <ul id="categorylist"></ul>
+        <h1>Recipies</h1>
         <h2>blandet</h2>
-        <section id="productlist"></section>
+        <section id="recipeslist"></section>
     </main>
 
     <script>
         const h2 = document.querySelector("h2");
-        const productlist = document.querySelector("#productlist");
-        let productsUrl = 'https://dummyjson.com/products';
+        const recipeslist = document.querySelector("#recipeslist");
+        const url = 'https://dummyjson.com/recipes';
 
         const cat = new URLSearchParams(window.location.search).get("cat");
 
         if (cat) {
             h2.textContent = cat;
-            productsUrl = `https://dummyjson.com/products/category/${cat}`;
+            recipesUrl = `https://dummyjson.com/recipes/category/${cat}`;
         }
 
-        function showProducts(data) {
-            //console.log(data.products);
-            data.products.forEach(product => {
-                productlist.innerHTML += `
-                <a href="single.html?id=${product.id}">
+        function showRecipies(data) {
+            console.log(data);
+            data.recipes.forEach(res => {
+                recipeslist.innerHTML += `
+                <a href="single.html?id=${res.id}">
                 <article class="product_card">
-                    <img src="${product.thumbnail}"> 
+                    <img src="${res.image}"> 
                     <div>
-                    <h3>${product.title}</h3>
-                    <p>${product.price} €</p>
-                    <p>${product.discountPercentage} %</p>
+                    <h3>${res.name}</h3>
                     </div>
                  </article>
                  </a>
@@ -52,10 +49,10 @@
         }
 
         function hentData(endpoint) {
-            fetch(endpoint).then(res => res.json()).then(showProducts);
+            fetch(endpoint).then(res => res.json()).then(showRecipies);
         }
 
-        hentData(productsUrl);
+        hentData(url);
     </script>
 </body>
 

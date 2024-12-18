@@ -13,10 +13,14 @@ img {
   max-width: 100%;
 }
 
-#categorylist,
-#catnav {
+#catlist,
+nav {
   list-style: none;
   padding: 0;
+
+  ul {
+    padding: 0;
+  }
 
   li {
     display: inline-block;
@@ -61,7 +65,7 @@ button {
   }
 }
 
-#productlist {
+#recipeslist {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
@@ -83,4 +87,14 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+#recipe {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+  img {
+    max-width: 30%;
+    margin-top: 1.5em;
+  }
 }
