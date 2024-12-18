@@ -33,11 +33,6 @@
             productsUrl = `https://dummyjson.com/products/category/${cat}`;
         }
 
-        function hentData(endpoint) {
-            fetch(endpoint).then(res => res.json()).then(showProducts);
-        }
-
-
         function showProducts(data) {
             //console.log(data.products);
             data.products.forEach(product => {
@@ -45,16 +40,22 @@
                 <a href="single.html?id=${product.id}">
                 <article class="product_card">
                     <img src="${product.thumbnail}"> 
+                    <div>
                     <h3>${product.title}</h3>
                     <p>${product.price} €</p>
                     <p>${product.discountPercentage} %</p>
+                    </div>
                  </article>
                  </a>
                 `
             });
         }
 
-        hentData(productsUrl, showProducts);
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showProducts);
+        }
+
+        hentData(productsUrl);
     </script>
 </body>
 
