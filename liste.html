@@ -27,6 +27,7 @@
         let productsUrl = 'https://dummyjson.com/products';
 
         const cat = new URLSearchParams(window.location.search).get("cat");
+
         if (cat) {
             h2.textContent = cat;
             productsUrl = `https://dummyjson.com/products/category/${cat}`;

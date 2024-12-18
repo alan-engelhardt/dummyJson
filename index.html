@@ -19,12 +19,6 @@
         const categorylist = document.querySelector("#categorylist");
         const categoryUrl = 'https://dummyjson.com/products/category-list';
 
-        const cat = new URLSearchParams(window.location.search).get("cat");
-        if (cat) {
-            h2.textContent = cat;
-            productsUrl = `https://dummyjson.com/products/category/${cat}`;
-        }
-
         function hentData(endpoint) {
             fetch(endpoint).then(res => res.json()).then(showCategories);
         }
@@ -32,14 +26,14 @@
         function showCategories(data) {
             data.forEach(category => {
                 categorylist.innerHTML += `
-                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
+                <li class="inaktiv">
                     <a href="liste.html?cat=${category}">${category}</a>
                 </li>
                 `
             });
         }
 
-        hentData(categoryUrl, showCategories);
+        hentData(categoryUrl);
     </script>
 </body>
 
