@@ -13,9 +13,14 @@ img {
   max-width: 100%;
 }
 
-#categorylist {
+#taglist,
+nav {
   list-style: none;
   padding: 0;
+
+  ul {
+    padding: 0;
+  }
 
   li {
     display: inline-block;
@@ -42,6 +47,8 @@ button {
   margin: 0.2rem;
   padding: 0.4rem;
   border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
 }
 
 .aktiv {
@@ -60,7 +67,7 @@ button {
   }
 }
 
-#productlist {
+#recipeslist {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
@@ -78,5 +85,18 @@ button {
 .product_card {
   background-color: #222;
   padding: 1em;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#recipe {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+  img {
+    max-width: 30%;
+    margin-top: 1.5em;
+  }
 }

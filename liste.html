@@ -4,63 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>products</title>
+    <title>Recipies</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
-        <h1>Products</h1>
-        <ul id="categorylist"></ul>
+        <nav>
+            <ul>
+                <li class="aktiv"><a href="index.html">Forside</a></li>
+            </ul>
+        </nav>
+        <h1>Recipies</h1>
         <h2>blandet</h2>
-        <section id="productlist"></section>
+        <section id="recipeslist"></section>
     </main>
 
     <script>
         const h2 = document.querySelector("h2");
-        const categorylist = document.querySelector("#categorylist");
-        const productlist = document.querySelector("#productlist");
-        const categoryUrl = 'https://dummyjson.com/products/category-list';
-        let productsUrl = 'https://dummyjson.com/products';
+        const recipeslist = document.querySelector("#recipeslist");
+        let url = 'https://dummyjson.com/recipes';
 
-        const cat = new URLSearchParams(window.location.search).get("cat");
-        if (cat) {
-            h2.textContent = cat;
-            productsUrl = `https://dummyjson.com/products/category/${cat}`;
+        const tag = new URLSearchParams(window.location.search).get("tag");
+
+        if (tag) {
+            h2.textContent = tag;
+            url = `https://dummyjson.com/recipes/tag/${tag}`;
         }
 
-        function hentData(endpoint, out) {
-            fetch(endpoint).then(res => res.json()).then(out);
-        }
-
-        function showCategories(data) {
-            data.forEach(category => {
-                categorylist.innerHTML += `
-                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
-                    <a href="?cat=${category}">${category}</a>
-                </li>
-                `
-            });
-        }
-
-        function showProducts(data) {
-            //console.log(data.products);
-            data.products.forEach(product => {
-                productlist.innerHTML += `
-                <a href="single.html?id=${product.id}">
+        function showRecipies(data) {
+            console.log(data);
+            data.recipes.forEach(res => {
+                recipeslist.innerHTML += `
+                <a href="single.html?id=${res.id}">
                 <article class="product_card">
-                    <img src="${product.thumbnail}"> 
-                    <h3>${product.title}</h3>
-                    <p>${product.price} €</p>
-                    <p>${product.discountPercentage} %</p>
+                    <img src="${res.image}"> 
+                    <div>
+                    <h3>${res.name}</h3>
+                    </div>
                  </article>
                  </a>
                 `
             });
         }
 
-        hentData(categoryUrl, showCategories);
-        hentData(productsUrl, showProducts);
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showRecipies);
+        }
+
+        hentData(url);
     </script>
 </body>
 

@@ -4,18 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single</title>
+    <title>single</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
-        <article></article>
+        <nav>
+            <ul id="catnav">
+                <li class="aktiv"><a href="index.html">Forside</a></li>
+            </ul>
+        </nav>
+        <article id="recipe"></article>
         <nav><button onclick="history.back()">Back</button></nav>
     </main>
     <script>
         const id = new URLSearchParams(window.location.search).get("id");
-        const productUrl = `https://dummyjson.com/products/${id}`;
+        const productUrl = `https://dummyjson.com/recipes/${id}`;
         const article = document.querySelector("article");
 
         function getData() {
@@ -23,11 +28,19 @@
         }
 
         function show(data) {
-            console.log(data);
+            console.log(data)
+            let iList = "";
+            data.ingredients.forEach(element => {
+                iList += `<li>${element}</li>`
+            });
             article.innerHTML += `
-                <h1>${data.title}</h1>
-                <img src="${data.thumbnail}">
-                <p>${data.description}</p>
+                <img src="${data.image}">
+                <div>
+                    <h1>${data.name}</h1>
+                    <p>${data.instructions}</p>
+                    <h3>Ingredients</h3>
+                    <ul>${iList}</ul>
+                </div >
             `;
         }
 

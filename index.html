@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Frontpage</title>
+</head>
+
+<body>
+    <main>
+        <h1>My Recipes</h1>
+        <h2>Kategorier</h2>
+        <ul id="taglist"></ul>
+    </main>
+    <script>
+
+        const taglist = document.querySelector("#taglist");
+        const tagsUrl = 'https://dummyjson.com/recipes/tags';
+
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showCategories);
+        }
+
+        function showCategories(data) {
+            data.forEach(category => {
+                taglist.innerHTML += `
+                <li class="inaktiv">
+                    <a href="liste.html?tag=${category}">${category}</a>
+                </li>
+                `
+            });
+        }
+
+        hentData(tagsUrl);
+    </script>
+</body>
+
+</html>
