@@ -28,18 +28,15 @@
         }
 
         function show(data) {
-            console.log(data)
-            let iList = "";
-            data.ingredients.forEach(element => {
-                iList += `<li>${element}</li>`
-            });
             article.innerHTML += `
                 <img src="${data.image}">
                 <div>
                     <h1>${data.name}</h1>
                     <p>${data.instructions}</p>
                     <h3>Ingredients</h3>
-                    <ul>${iList}</ul>
+                    <ul>
+                         ${data.ingredients.map(element => `<li>${element}</li>`).join('')}
+                    </ul>
                 </div >
             `;
         }
@@ -49,3 +46,15 @@
 </body>
 
 </html>
+
+<!-- 
+Explanation:
+.map() creates a new array where each element is transformed into an <li> string.
+For example, if data.ingredients = ['Sugar', 'Flour', 'Eggs'], the .map() call generates:
+['<li>Sugar</li>', '<li>Flour</li>', '<li>Eggs</li>']
+
+.join(''):
+After creating the array of <li> strings, .join('') combines them into a single string:
+'<li>Sugar</li><li>Flour</li><li>Eggs</li>'
+This string is then interpolated into the <ul> tag.
+-->
