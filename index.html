@@ -24,13 +24,13 @@
         }
 
         function showCategories(data) {
-            data.forEach(category => {
+            data.map(category =>
                 taglist.innerHTML += `
                 <li class="inaktiv">
                     <a href="liste.html?tag=${category}">${category}</a>
                 </li>
                 `
-            });
+            );
         }
 
         hentData(tagsUrl);

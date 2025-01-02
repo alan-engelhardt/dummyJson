@@ -34,7 +34,7 @@
 
         function showRecipies(data) {
             console.log(data);
-            data.recipes.forEach(res => {
+            data.recipes.map(res =>
                 recipeslist.innerHTML += `
                 <a href="single.html?id=${res.id}">
                 <article class="product_card">
@@ -45,7 +45,7 @@
                  </article>
                  </a>
                 `
-            });
+            );
         }
 
         function hentData(endpoint) {
