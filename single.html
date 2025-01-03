@@ -28,14 +28,14 @@
         }
 
         function show(data) {
-            article.innerHTML += `
+            article.innerHTML = `
                 <img src="${data.image}">
                 <div>
                     <h1>${data.name}</h1>
                     <p>${data.instructions}</p>
                     <h3>Ingredients</h3>
                     <ul>
-                         ${data.ingredients.map(element => `<li>${element}</li>`).join('')}
+                         ${data.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                     </ul>
                 </div >
             `;

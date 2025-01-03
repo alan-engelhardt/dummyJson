@@ -33,12 +33,12 @@
         }
 
         function showRecipies(data) {
-            const markup = data.recipes.map(res => `
-                <a href="single.html?id=${res.id}">
+            const markup = data.recipes.map(dish => `
+                <a href="single.html?id=${dish.id}">
                 <article class="product_card">
-                    <img src="${res.image}"> 
+                    <img src="${dish.image}"> 
                     <div>
-                    <h3>${res.name}</h3>
+                    <h3>${dish.name}</h3>
                     </div>
                  </article>
                  </a>`).join('');
