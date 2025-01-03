@@ -33,9 +33,7 @@
         }
 
         function showRecipies(data) {
-            console.log(data);
-            data.recipes.map(res =>
-                recipeslist.innerHTML += `
+            const markup = data.recipes.map(res => `
                 <a href="single.html?id=${res.id}">
                 <article class="product_card">
                     <img src="${res.image}"> 
@@ -43,9 +41,9 @@
                     <h3>${res.name}</h3>
                     </div>
                  </article>
-                 </a>
-                `
-            );
+                 </a>`).join('');
+
+            recipeslist.innerHTML = markup;
         }
 
         function hentData(endpoint) {
