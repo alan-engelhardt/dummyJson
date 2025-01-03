@@ -33,14 +33,13 @@
         }
 
         function showRecipies(data) {
-            console.log(data);
-            data.recipes.forEach(res => {
+            data.recipes.forEach(dish => {
                 recipeslist.innerHTML += `
-                <a href="single.html?id=${res.id}">
+                <a href="single.html?id=${dish.id}">
                 <article class="product_card">
-                    <img src="${res.image}"> 
+                    <img src="${dish.image}"> 
                     <div>
-                    <h3>${res.name}</h3>
+                    <h3>${dish.name}</h3>
                     </div>
                  </article>
                  </a>
