@@ -19,19 +19,19 @@
         const taglist = document.querySelector("#taglist");
         const tagsUrl = 'https://dummyjson.com/recipes/tags';
 
-        function hentData(endpoint) {
-            fetch(endpoint).then(res => res.json()).then(showCategories);
-        }
-
         function showCategories(data) {
             const markup = data.map(category =>
                 `
-                <li class="inaktiv">
-                    <a href="liste.html?tag=${category}">${category}</a>
+            <li class="inaktiv">
+                <a href="liste.html?tag=${category}">${category}</a>
                 </li>
                 `
             ).join('');
             taglist.innerHTML = markup;
+        }
+
+        function hentData(endpoint) {
+            fetch(endpoint).then(res => res.json()).then(showCategories);
         }
 
         hentData(tagsUrl);
