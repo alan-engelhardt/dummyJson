@@ -25,11 +25,11 @@
         const productlist = document.querySelector("#productlist");
         let url = 'https://kea-alt-del.dk/t7/api/products';
 
-        const id = new URLSearchParams(window.location.search).get("id");
+        const category = new URLSearchParams(window.location.search).get("category");
 
-        if (id) {
-            h2.textContent = id;
-            url = `https://kea-alt-del.dk/t7/api/products/id/${id}`;
+        if (category) {
+            h2.textContent = category;
+            url = `https://kea-alt-del.dk/t7/api/products?category=${category}`;
         }
 
         function showProducks(data) {
