@@ -19,8 +19,9 @@
         <nav><button onclick="history.back()">Back</button></nav>
     </main>
     <script>
+
         const id = new URLSearchParams(window.location.search).get("id");
-        const productUrl = `https://dummyjson.com/recipes/${id}`;
+        const productUrl = `https://kea-alt-del.dk/t7/api/products/${id}`;
         const article = document.querySelector("article");
 
         function getData() {
@@ -29,19 +30,16 @@
 
         function show(data) {
             article.innerHTML = `
-                <img src="${data.image}">
+                <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${data.id}.webp`}"> 
                 <div>
-                    <h1>${data.name}</h1>
-                    <p>${data.instructions}</p>
-                    <h3>Ingredients</h3>
-                    <ul>
-                         ${data.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                    </ul>
+                    <h1>${data.productdisplayname}</h1>
+                    <p>${data.description}</p>
                 </div >
             `;
         }
 
         getData();
+
     </script>
 </body>
 
