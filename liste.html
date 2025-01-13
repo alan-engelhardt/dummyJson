@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipies</title>
+    <title>Products</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,39 +15,39 @@
                 <li class="aktiv"><a href="index.html">Forside</a></li>
             </ul>
         </nav>
-        <h1>Recipies</h1>
-        <h2>blandet</h2>
-        <section id="recipeslist"></section>
+        <h1>Products</h1>
+        <h2>Mixed</h2>
+        <section id="productlist"></section>
     </main>
 
     <script>
         const h2 = document.querySelector("h2");
-        const recipeslist = document.querySelector("#recipeslist");
-        let url = 'https://dummyjson.com/recipes';
+        const productlist = document.querySelector("#productlist");
+        let url = 'https://kea-alt-del.dk/t7/api/products';
 
-        const tag = new URLSearchParams(window.location.search).get("tag");
+        const id = new URLSearchParams(window.location.search).get("id");
 
-        if (tag) {
-            h2.textContent = tag;
-            url = `https://dummyjson.com/recipes/tag/${tag}`;
+        if (id) {
+            h2.textContent = id;
+            url = `https://kea-alt-del.dk/t7/api/products/id/${id}`;
         }
 
-        function showRecipies(data) {
-            const markup = data.recipes.map(dish => `
-                <a href="single.html?id=${dish.id}">
+        function showProducks(data) {
+            const markup = data.map(product => `
+                <a href="single.html?id=${product.id}">
                 <article class="product_card">
-                    <img src="${dish.image}"> 
+                    <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
                     <div>
-                    <h3>${dish.name}</h3>
+                    <h3>${product.productdisplayname}</h3>
                     </div>
                  </article>
                  </a>`).join('');
 
-            recipeslist.innerHTML = markup;
+            productlist.innerHTML = markup;
         }
 
         function hentData(endpoint) {
-            fetch(endpoint).then(res => res.json()).then(showRecipies);
+            fetch(endpoint).then(res => res.json()).then(showProducks);
         }
 
         hentData(url);
