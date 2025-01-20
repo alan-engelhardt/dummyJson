@@ -25,7 +25,7 @@
         const article = document.querySelector("article");
 
         function getData() {
-            fetch(productUrl).then(res => res.json().then(show))
+            fetch(productUrl).then(response => response.json().then(data => show(data)));
         }
 
         function show(data) {

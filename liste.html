@@ -34,20 +34,20 @@
 
         function showProducks(data) {
             const markup = data.map(product => `
-                <a href="single.html?id=${product.id}">
+            <a href="single.html?id=${product.id}">
                 <article class="product_card">
                     <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
                     <div>
-                    <h3>${product.productdisplayname}</h3>
-                    </div>
-                 </article>
-                 </a>`).join('');
+                        <h3>${product.productdisplayname}</h3>
+                        </div>
+                        </article>
+                        </a>`).join('');
 
             productlist.innerHTML = markup;
         }
 
-        function hentData(endpoint) {
-            fetch(endpoint).then(res => res.json()).then(showProducks);
+        function hentData(url) {
+            fetch(url).then(response => response.json()).then(data => showProducks(data));
         }
 
         hentData(url);
