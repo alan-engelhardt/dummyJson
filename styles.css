@@ -13,7 +13,7 @@ img {
   max-width: 100%;
 }
 
-#taglist,
+#categorylist,
 nav {
   list-style: none;
   padding: 0;
@@ -67,7 +67,7 @@ button {
   }
 }
 
-#recipeslist {
+#productlist {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
@@ -91,7 +91,11 @@ button {
   justify-content: space-between;
 }
 
-#recipe {
+.product_card.soldout {
+  border: solid red;
+}
+
+#product {
   display: flex;
   gap: 2em;
   align-items: flex-start;

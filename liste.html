@@ -35,13 +35,15 @@
         function showProducks(data) {
             const markup = data.map(product => `
             <a href="single.html?id=${product.id}">
-                <article class="product_card">
+                <article class="product_card ${product.soldout ? "soldout" : ""}">
                     <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
                     <div>
                         <h3>${product.productdisplayname}</h3>
-                        </div>
-                        </article>
-                        </a>`).join('');
+                        <p>kr. <span>${product.price}</span>,-</p>
+                        ${product.discount ? `<p>rabat <span>${product.discount}</span>%</p>` : ""}
+                     </div>
+                </article>
+            </a>`).join('');
 
             productlist.innerHTML = markup;
         }

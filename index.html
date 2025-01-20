@@ -12,22 +12,22 @@
     <main>
         <h1>My Recipes</h1>
         <h2>Kategorier</h2>
-        <ul id="taglist"></ul>
+        <ul id="categorylist"></ul>
     </main>
     <script>
 
-        const taglist = document.querySelector("#taglist");
-        const tagsUrl = 'https://dummyjson.com/recipes/tags';
+        const categorylist = document.querySelector("#categorylist");
+        const tagsUrl = 'https://kea-alt-del.dk/t7/api/categories';
 
         function showCategories(data) {
-            const markup = data.map(category =>
+            const markup = data.map(elm =>
                 `
             <li class="inaktiv">
-                <a href="liste.html?tag=${category}">${category}</a>
+                <a href="liste.html?category=${elm.category}">${elm.category}</a>
                 </li>
                 `
             ).join('');
-            taglist.innerHTML = markup;
+            categorylist.innerHTML = markup;
         }
 
         function hentData(endpoint) {
