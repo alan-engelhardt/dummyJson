@@ -104,3 +104,7 @@ button {
     margin-top: 1.5em;
   }
 }
+
+tbody br {
+  display: none;
+}
