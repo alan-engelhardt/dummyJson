@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <style>
+        .card {
+            border: solid grey;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+
+    <article class="card"></article>
+    <ul></ul>
+
+    <script>
+
+        const room = {
+            beds: 3,
+            floor: 12,
+            windows: "yes",
+            balcony: "no",
+            view: "garden",
+            price: "1500"
+        }
+
+        const car = {
+            brand: "VW",
+            model: "ID4",
+            motor: "Elektrisk",
+            range: 450,
+            color: "Rød",
+            image: "VW_ID4.webp"
+        }
+
+        console.log(car.brand); // VW
+        console.log(car.motor); // electrical
+
+
+        const cars = [
+            {
+                brand: "VW",
+                model: "ID4",
+                motor: "Elektrisk",
+                range: 450,
+                color: "Rød",
+                image: "VW_ID4.webp"
+            },
+            {
+                brand: "BMW",
+                model: "X5",
+                motor: "Diesel",
+                range: 1200,
+                color: "Sort",
+                image: "BMW_X5.webp"
+            },
+            {
+                brand: "Citroën",
+                model: "C4",
+                motor: "Benzin",
+                range: 850,
+                color: "Sølv",
+                image: "C4.webp"
+            }
+        ]
+
+
+        console.log(cars[1].brand); // BMW
+        console.log(cars[2].motor); // Benzin
+        console.log(cars[0].color); // Rød
+
+        const billiste = cars.map(bil => `<li>${bil.brand}, ${bil.model}</li>`);
+        console.log(billiste)
+        const ul = document.querySelector("ul");
+        ul.innerHTML = billiste;
+
+
+        const besked = `Denne bil er en ${car.brand} model ${car.model}`;
+        const detaljer = `Batteriet har en rækkevidde på ${car.range} km.`
+        console.log(besked); // Denne bil er en VW model ID4
+
+        const card = document.querySelector(".card");
+
+        card.innerHTML = `
+            <img src="${car.image}" alt="${car.model}">
+            <h2>${car.brand}</h2>
+            <h3>${car.model}</h3>
+            <p>Leveres i ${car.color}</p>
+            <p>Motor: ${car.motor}.</p>
+            <p>Rækkevidde: ${car.range} km</p>
+            `;
+
+
+    </script>
+</body>
+
+</html>
