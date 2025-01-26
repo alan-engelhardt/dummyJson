@@ -83,6 +83,7 @@ button {
 }
 
 .product_card {
+  position: relative;
   background-color: #222;
   padding: 1em;
   border-radius: 0.8rem;
@@ -90,6 +91,7 @@ button {
   grid-template-rows: subgrid;
   grid-row: span 3;
   gap: 10px;
+
   h3 {
     margin: 5px;
   }
@@ -99,7 +101,16 @@ button {
 }
 
 .product_card.soldout {
-  border: solid red;
+  opacity: 0.8;
+}
+
+.product_card.soldout::after {
+  content: "Udsolg";
+  position: absolute;
+  opacity: 1;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: orange;
 }
 
 #product {
