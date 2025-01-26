@@ -86,9 +86,10 @@ button {
   background-color: #222;
   padding: 1em;
   border-radius: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: auto/span 3;
+  gap: 0.5rem;
 }
 
 .product_card.soldout {
