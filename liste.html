@@ -33,8 +33,9 @@
         }
 
         function showRecipies(data) {
+            let string;
             data.recipes.forEach(dish => {
-                recipeslist.innerHTML += `
+                string += `
                 <a href="single.html?id=${dish.id}">
                 <article class="product_card">
                     <img src="${dish.image}"> 
@@ -45,6 +46,7 @@
                  </a>
                 `
             });
+            recipeslist.innerHTML = string;
         }
 
         function hentData(endpoint) {
