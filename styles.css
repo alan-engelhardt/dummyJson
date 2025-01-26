@@ -1,7 +1,7 @@
 body {
   background-color: black;
   color: #eee;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -24,8 +24,8 @@ nav {
 
   li {
     display: inline-block;
-    margin: 0.2rem;
-    padding: 0.4rem;
+    margin: 0.5rem;
+    padding: 1rem;
     border-radius: 0.4rem;
   }
 
