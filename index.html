@@ -35,12 +35,9 @@
 
         function showCategories(data) {
             const markup = data.map(elm =>
-                `
-            <li class="inaktiv">
-                <a href="liste.html?category=${elm.category}">${elm.category}</a>
-                </li>
-                `
-            ).join('');
+                `<li class="aktiv">
+                    <a href="liste.html?category=${elm.category}">${elm.category}</a>
+                </li>`).join('');
             categorylist.innerHTML = markup;
         }
 
