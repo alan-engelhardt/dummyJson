@@ -88,8 +88,14 @@ button {
   border-radius: 0.8rem;
   display: grid;
   grid-template-rows: subgrid;
-  grid-row: auto/span 3;
-  gap: 0.5rem;
+  grid-row: span 3;
+  gap: 10px;
+  h3 {
+    margin: 5px;
+  }
+  p {
+    margin: 5px;
+  }
 }
 
 .product_card.soldout {
