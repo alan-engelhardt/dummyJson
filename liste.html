@@ -11,13 +11,9 @@
 <body>
 
     <main>
-        <nav>
-            <ul>
-                <li class="aktiv"><a href="index.html">Forside</a></li>
-            </ul>
-        </nav>
-
-        <h1>Products</h1>
+        <a href="index.html">
+            <h1>Fashion<span>R</span>us</h1>
+        </a>
         <h2>Mixed</h2>
         <section id="productlist"></section>
     </main>
@@ -36,16 +32,16 @@
 
         function showProducts(data) {
             const markup = data.map(product => `
+            <a href="single.html?id=${product.id}">
             <article class="product_card ${product.soldout ? "soldout" : ""}">
-                <a href="single.html?id=${product.id}">
                     <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
-                    </a>
                     <h3>${product.productdisplayname}</h3>
                     <div>
                         <p>kr. <span>${product.price}</span>,-</p>
                         ${product.discount ? `<p>rabat <span>${product.discount}</span>%</p>` : ""}
-                     </div>
-                </article>
+                        </div>
+                        </article>
+                        </a>
             `).join('');
 
             productlist.innerHTML = markup;
