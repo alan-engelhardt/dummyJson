@@ -24,6 +24,7 @@
 
     <article class="card"></article>
     <ul></ul>
+
     <section id="carlist"></section>
 
     <script>
@@ -86,8 +87,10 @@
                 <h2>${car.brand}</h2>
                 <h3>${car.model}</h3>
                 <p>${car.motor}</p>
-                <p>${car.extras}</p>
-                <p>${car.colors}</p>
+                <p>Tilbehør:</p>
+                <ul>${car.extras.map(feat => `<li>${feat}</li>`).join('')}</ul>
+                <p>Farver:</p>
+                <ul>${car.colors.map(color => `<li>${color}</li>`).join('')}</ul>
                 </article>`
             ).join('');
             carlist.innerHTML = markup;
