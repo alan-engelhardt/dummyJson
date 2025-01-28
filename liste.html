@@ -32,7 +32,7 @@
 
         function showProducts(data) {
             const markup = data.map(product => `
-            <a href="single.html?id=${product.id}">
+            <a href=${product.soldout ? "#" : `single.html?id=${product.id}`}>
             <article class="product_card ${product.soldout ? "soldout" : ""}">
                     <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
                     <h3>${product.productdisplayname}</h3>
