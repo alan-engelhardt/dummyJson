@@ -13,6 +13,10 @@
             margin: 1rem;
             width: fit-content;
         }
+
+        section {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -20,6 +24,7 @@
 
     <article class="card"></article>
     <ul></ul>
+    <section id="carlist"></section>
 
     <script>
 
@@ -50,32 +55,49 @@
                 brand: "VW",
                 model: "ID4",
                 motor: "Elektrisk",
-                range: 450,
-                color: "Rød",
+                extras: ["Soltag", "Fartpilot", "P-skive"],
+                colors: ["Grå", "Blå"],
                 image: "VW_ID4.webp"
             },
             {
                 brand: "BMW",
                 model: "X5",
                 motor: "Diesel",
-                range: 1200,
-                color: "Sort",
+                extras: ["Turbo", "Alufælge"],
+                colors: ["Sølv", "Guld", "Sort", "Hvid"],
                 image: "BMW_X5.webp"
             },
             {
                 brand: "Citroën",
                 model: "C4",
                 motor: "Benzin",
-                range: 850,
-                color: "Sølv",
+                extras: ["Cigartænder", "Køleboks", "Jakkeholder", "Mobilholder"],
+                colors: ["Gul", "Grøn", "Blå"],
                 image: "C4.webp"
             }
         ]
 
+        const carlist = document.querySelector("#carlist");
 
-        console.log(cars[1].brand); // BMW
-        console.log(cars[2].motor); // Benzin
-        console.log(cars[0].color); // Rød
+        function showCars() {
+            const markup = cars.map(car =>
+                `<article class="card">
+                <img src=${car.brand} alt="${car.brand} ${car.model}">
+                <h2>${car.brand}</h2>
+                <h3>${car.model}</h3>
+                <p>${car.motor}</p>
+                <p>${car.extras}</p>
+                <p>${car.colors}</p>
+                </article>`
+            ).join('');
+            carlist.innerHTML = markup;
+        }
+
+        showCars();
+
+        console.log(cars[1].model); // X5
+        console.log(cars[2].extras[0]); // Cigartænder
+        console.log(cars[0].colors[2]); // Blå
 
         const billiste = cars.map(bil => `<li>${bil.brand}, ${bil.model}</li>`);
         console.log(billiste)
