@@ -27,6 +27,10 @@
     <ul id="liste"></ul>
     <h2>Biler</h2>
     <ul id="bilul"></ul>
+    <h2>Frugt</h2>
+    <ul id="liste"></ul>
+    <h2>Biler</h2>
+    <ul id="bilul"></ul>
     <section id="carlist"></section>
 
     <script>
@@ -36,8 +40,10 @@
         const mitArray = ["Æbler", "Bananer", "Pærer", "Appelsiner"];
 
         function lavListe() {
-            const punkter = mitArray.map(navn => `<li>${navn}</li>`).join('');
-            console.log(punkter);
+            const nytArray = mitArray.map(navn => `<li>${navn}</li>`);
+            console.log(nytArray);
+            const punkter = nytArray.join('');
+            console.log("Punkter: " + punkter);
             liste.innerHTML = punkter;
         }
 
@@ -116,8 +122,9 @@
         console.log(cars[2].extras[0]); // Cigartænder
         console.log(cars[0].colors[2]); // Blå
 
-        const billiste = cars.map(bil => `<li>${bil.brand}, ${bil.model}</li>`);
+        const billiste = cars.map(bil => `<li>${bil.brand}, ${bil.model}</li>`).join('X');
         console.log(billiste)
+        const ul = document.querySelector("#bilul");
         const ul = document.querySelector("#bilul");
         ul.innerHTML = billiste;
 
