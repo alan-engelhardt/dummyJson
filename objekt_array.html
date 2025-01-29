@@ -23,11 +23,25 @@
 <body>
 
     <article class="card"></article>
-    <ul></ul>
-
+    <h2>Frugt</h2>
+    <ul id="liste"></ul>
+    <h2>Biler</h2>
+    <ul id="bilul"></ul>
     <section id="carlist"></section>
 
     <script>
+
+        const liste = document.querySelector("#liste");
+
+        const mitArray = ["Æbler", "Bananer", "Pærer", "Appelsiner"];
+
+        function lavListe() {
+            const punkter = mitArray.map(navn => `<li>${navn}</li>`).join('');
+            console.log(punkter);
+            liste.innerHTML = punkter;
+        }
+
+        lavListe();
 
         const room = {
             beds: 3,
@@ -104,7 +118,7 @@
 
         const billiste = cars.map(bil => `<li>${bil.brand}, ${bil.model}</li>`);
         console.log(billiste)
-        const ul = document.querySelector("ul");
+        const ul = document.querySelector("#bilul");
         ul.innerHTML = billiste;
 
 
