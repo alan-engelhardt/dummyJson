@@ -4,35 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single</title>
+    <title>single</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
-        <article></article>
+        <a href="index.html">
+            <h1>Fashion<span>R</span>us</h1>
+        </a>
+        <article id="product"></article>
         <nav><button onclick="history.back()">Back</button></nav>
     </main>
     <script>
+
         const id = new URLSearchParams(window.location.search).get("id");
-        const productUrl = `https://dummyjson.com/products/${id}`;
+        const productUrl = `https://kea-alt-del.dk/t7/api/products/${id}`;
         const article = document.querySelector("article");
 
         function getData() {
-            fetch(productUrl).then(res => res.json().then(show))
+            fetch(productUrl).then(response => response.json().then(data => show(data)));
         }
 
         function show(data) {
-            console.log(data);
-            article.innerHTML += `
-                <h1>${data.title}</h1>
-                <img src="${data.thumbnail}">
-                <p>${data.description}</p>
+            article.innerHTML = `
+                <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${data.id}.webp`}"> 
+                <div>
+                    <h1>${data.productdisplayname}</h1>
+                    <p>${data.description}</p>
+                </div >
             `;
         }
 
         getData();
+
     </script>
 </body>
 
 </html>
+
+<!-- 
+Explanation:
+.map() creates a new array where each element is transformed into an <li> string.
+For example, if data.ingredients = ['Sugar', 'Flour', 'Eggs'], the .map() call generates:
+['<li>Sugar</li>', '<li>Flour</li>', '<li>Eggs</li>']
+
+.join('') combines  array of <li> strings into a single string:
+'<li>Sugar</li><li>Flour</li><li>Eggs</li>'
+This string is then interpolated into the <ul> tag.
+-->

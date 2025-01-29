@@ -4,63 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>products</title>
+    <title>Products</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+
     <main>
-        <h1>Products</h1>
-        <ul id="categorylist"></ul>
-        <h2>blandet</h2>
+        <a href="index.html">
+            <h1>Fashion<span>R</span>us</h1>
+        </a>
+        <h2>Mixed</h2>
         <section id="productlist"></section>
     </main>
 
     <script>
         const h2 = document.querySelector("h2");
-        const categorylist = document.querySelector("#categorylist");
         const productlist = document.querySelector("#productlist");
-        const categoryUrl = 'https://dummyjson.com/products/category-list';
-        let productsUrl = 'https://dummyjson.com/products';
+        let url = 'https://kea-alt-del.dk/t7/api/products';
 
-        const cat = new URLSearchParams(window.location.search).get("cat");
-        if (cat) {
-            h2.textContent = cat;
-            productsUrl = `https://dummyjson.com/products/category/${cat}`;
-        }
+        const category = new URLSearchParams(window.location.search).get("category");
 
-        function hentData(endpoint, out) {
-            fetch(endpoint).then(res => res.json()).then(out);
-        }
-
-        function showCategories(data) {
-            data.forEach(category => {
-                categorylist.innerHTML += `
-                <li class="${category == cat ? 'aktiv' : 'inaktiv'}">
-                    <a href="?cat=${category}">${category}</a>
-                </li>
-                `
-            });
+        if (category) {
+            h2.textContent = category;
+            url = `https://kea-alt-del.dk/t7/api/products?category=${category}`;
         }
 
         function showProducts(data) {
-            //console.log(data.products);
-            data.products.forEach(product => {
-                productlist.innerHTML += `
-                <a href="single.html?id=${product.id}">
-                <article class="product_card">
-                    <img src="${product.thumbnail}"> 
-                    <h3>${product.title}</h3>
-                    <p>${product.price} €</p>
-                    <p>${product.discountPercentage} %</p>
-                 </article>
-                 </a>
-                `
-            });
+            const markup = data.map(product => `
+            <a href=${product.soldout ? "#" : `single.html?id=${product.id}`}>
+            <article class="product_card ${product.soldout ? "soldout" : ""}">
+                    <img src="${`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}"> 
+                    <h3>${product.productdisplayname}</h3>
+                    <div>
+                        <p>kr. <span>${product.price}</span>,-</p>
+                        ${product.discount ? `<p>rabat <span>${product.discount}</span>%</p>` : ""}
+                        </div>
+                        </article>
+                        </a>
+            `).join('');
+
+            productlist.innerHTML = markup;
         }
 
-        hentData(categoryUrl, showCategories);
-        hentData(productsUrl, showProducts);
+        function hentData() {
+            fetch(url).then(response => response.json()).then(data => showProducts(data));
+        }
+
+        hentData();
     </script>
 </body>
 

@@ -1,7 +1,7 @@
 body {
   background-color: black;
   color: #eee;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -13,19 +13,41 @@ img {
   max-width: 100%;
 }
 
-#categorylist {
+h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+
+  span {
+    display: inline-block;
+    color: red;
+    scale: -1 1;
+    translate: 3px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#categorylist,
+nav {
   list-style: none;
   padding: 0;
 
+  ul {
+    padding: 0;
+  }
+
   li {
     display: inline-block;
-    margin: 0.2rem;
-    padding: 0.4rem;
     border-radius: 0.4rem;
+    margin: 0.5rem;
   }
 
   a {
-    text-decoration: none;
+    padding: 2rem;
+    line-height: 3;
   }
 
   li:hover {
@@ -38,17 +60,25 @@ img {
 }
 
 button {
-  background-color: orange;
-  margin: 0.2rem;
-  padding: 0.4rem;
-  border-radius: 0.4rem;
+  background-color: white;
+  color: #222;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  background-color: white;
+  color: #222;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  cursor: pointer;
 }
 
 .aktiv {
   background-color: orange;
 
   a {
-    color: #333;
+    color: white;
   }
 }
 
@@ -62,21 +92,76 @@ button {
 
 #productlist {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1em;
 
   img {
     max-width: 100%;
+    border-radius: 0.4rem;
+    border-radius: 0.4rem;
   }
 
   a {
     text-decoration: none;
     color: inherit;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
   }
 }
 
 .product_card {
+  position: relative;
   background-color: #222;
   padding: 1em;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 10px;
+
+  h3 {
+    margin: 5px;
+  }
+  p {
+    margin: 5px;
+  }
+}
+
+.product_card:hover {
+  background-color: #234;
+}
+
+.product_card:hover {
+  background-color: #234;
+}
+
+.product_card.soldout {
+  opacity: 0.8;
+}
+
+.product_card.soldout::after {
+  content: "Udsolg";
+  position: absolute;
+  opacity: 1;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: orange;
+}
+
+#product {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+  img {
+    max-width: 30%;
+    margin-top: 1.5em;
+  }
+}
+
+tbody br {
+  display: none;
 }
